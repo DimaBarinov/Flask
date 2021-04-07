@@ -10,147 +10,36 @@ using System.Windows.Forms;
 using Flask;
 
 namespace FlaskUI
-{
+{       
     public partial class MainForm : Form
     {
         public ConnectingKompas _kompas;
+        private FlaskParameters _parameters = new FlaskParameters();
         public MainForm()
         {
             InitializeComponent();
-        }
 
-        private void LengthTextBox_Enter(object sender, EventArgs e)
-        {
-            if(LengthTextBox.Text == "(70 - 120 мм)")
-            {
-                LengthTextBox.Clear();
-                LengthTextBox.ForeColor = Color.Black;
-            }
         }
-
-        private void LengthTextBox_Leave(object sender, EventArgs e)
-        {
-            if (string.IsNullOrWhiteSpace(LengthTextBox.Text))
-            {
-                LengthTextBox.Text = "(70 - 120 мм)";
-                LengthTextBox.ForeColor = Color.Gray;
-            }
-        }
-
-        private void WidthTextBox_Enter(object sender, EventArgs e)
-        {
-            if (WidthTextBox.Text == "(20 - 40 мм)")
-            {
-                WidthTextBox.Clear();
-                WidthTextBox.ForeColor = Color.Black;
-            }
-        }
-
-        private void WidthTextBox_Leave(object sender, EventArgs e)
-        {
-            if (string.IsNullOrWhiteSpace(WidthTextBox.Text))
-            {
-                WidthTextBox.Text = "(20 - 40 мм)";
-                WidthTextBox.ForeColor = Color.Gray;
-            }
-        }
-
-        private void HeightTextBox_Enter(object sender, EventArgs e)
-        {
-            if (HeightTextBox.Text == "(100 - 150 мм)")
-            {
-                HeightTextBox.Clear();
-                HeightTextBox.ForeColor = Color.Black;
-            }
-        }
-
-        private void HeightTextBox_Leave(object sender, EventArgs e)
-        {
-            if (string.IsNullOrWhiteSpace(HeightTextBox.Text))
-            {
-                HeightTextBox.Text = "(100 - 150 мм)";
-                HeightTextBox.ForeColor = Color.Gray;
-            }
-        }
-
-        private void ThicknessTextBox_Enter(object sender, EventArgs e)
-        {
-            if (ThicknessTextBox.Text == "(1 - 3 мм)")
-            {
-                ThicknessTextBox.Clear();
-                ThicknessTextBox.ForeColor = Color.Black;
-            }
-        }
-
-        private void ThicknessTextBox_Leave(object sender, EventArgs e)
-        {
-            if (string.IsNullOrWhiteSpace(ThicknessTextBox.Text))
-            {
-                ThicknessTextBox.Text = "(1 - 3 мм)";
-                ThicknessTextBox.ForeColor = Color.Gray;
-            }
-        }
-
-        private void NeckDiameterTextBox_Enter(object sender, EventArgs e)
-        {
-            if (NeckDiameterTextBox.Text == "(10 - 20 мм)")
-            {
-                NeckDiameterTextBox.Clear();
-                NeckDiameterTextBox.ForeColor = Color.Black;
-            }
-        }
-
-        private void NeckDiameterTextBox_Leave(object sender, EventArgs e)
-        {
-            if (string.IsNullOrWhiteSpace(NeckDiameterTextBox.Text))
-            {
-                NeckDiameterTextBox.Text = "(10 - 20 мм)";
-                NeckDiameterTextBox.ForeColor = Color.Gray;
-            }
-        }
-
-        private void NeckHeightTextBox_Enter(object sender, EventArgs e)
-        {
-            if (NeckHeightTextBox.Text == "(10 - 20 мм)")
-            {
-                NeckHeightTextBox.Clear();
-                NeckHeightTextBox.ForeColor = Color.Black;
-            }
-        }
-
-        private void NeckHeightTextBox_Leave(object sender, EventArgs e)
-        {
-            if (string.IsNullOrWhiteSpace(NeckHeightTextBox.Text))
-            {
-                NeckHeightTextBox.Text = "(10 - 20 мм)";
-                NeckHeightTextBox.ForeColor = Color.Gray;
-            }
-        }
-
+                    
         private void BuildModelButton_Click(object sender, EventArgs e)
-        {
-            BuildFlask();
-        }
-
-        public void BuildFlask()
         {
             try
             {
-                var parameters = new FlaskParameters(double.Parse(LengthTextBox.Text),
-                    double.Parse(WidthTextBox.Text),
-                    double.Parse(HeightTextBox.Text),
-                    double.Parse(ThicknessTextBox.Text),
-                    double.Parse(NeckDiameterTextBox.Text),
-                    double.Parse(NeckHeightTextBox.Text)
-                    );
+                _parameters.FlaskLength = double.Parse(FlaskLengthTextBox.Text);
+                _parameters.FlaskWidth = double.Parse(FlaskWidthTextBox.Text);
+                _parameters.FlaskHeight = double.Parse(FlaskHeightTextBox.Text);
+                _parameters.CaseThickness = double.Parse(CaseThicknessTextBox.Text);  
+                _parameters.NeckDiameter = double.Parse(NeckDiameterTextBox.Text);
+                _parameters.NeckHeight = double.Parse(NeckHeightTextBox.Text);
             }
             catch (FormatException)
             {
-                MessageBox.Show("Данные введены некорректно. Возможно, заполнены не все обязательные поля или введены лишние запятые.", @"Предупреждение", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Данные введены некорректно. Возможно, заполнены не все обязательные поля или введены лишние запятые.",
+                    @"Предупреждение", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
-            catch (ArgumentException e)
+            catch (ArgumentException ex)
             {
-                MessageBox.Show(e.Message, @"Предупреждение", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show(ex.Message, @"Предупреждение", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
 
@@ -158,6 +47,58 @@ namespace FlaskUI
         {
             if ((e.KeyChar < '0' || e.KeyChar > '9') && (e.KeyChar != 44) && (e.KeyChar != 8))
                 e.Handled = true;
+        }
+
+        private void ValidateParameter(Control control)
+        {
+            try
+            {
+                if (control.Name.Contains("FlaskLengthTextBox")) _parameters.FlaskLength = double.Parse(control.Text);
+                if (control.Name.Contains("FlaskWidthTextBox")) _parameters.FlaskWidth = double.Parse(control.Text);
+                if (control.Name.Contains("FlaskHeightTextBox")) _parameters.FlaskHeight = double.Parse(control.Text);
+                if (control.Name.Contains("CaseThicknessTextBox")) _parameters.CaseThickness = double.Parse(control.Text);
+                if (control.Name.Contains("NeckDiameterTextBox")) _parameters.NeckDiameter = double.Parse(control.Text);
+                if (control.Name.Contains("NeckHeightTextBox")) _parameters.NeckHeight = double.Parse(control.Text);
+            }
+            catch (FormatException)
+            {
+                MessageBox.Show("Данные введены некорректно. Возможно, заполнены не все обязательные поля или введены лишние запятые.",
+                    @"Предупреждение", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            catch (ArgumentException ex)
+            {
+                MessageBox.Show(ex.Message, @"Предупреждение", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+
+        private void LengthTextBox_Leave(object sender, EventArgs e)
+        {
+            ValidateParameter(FlaskLengthTextBox);
+        }
+
+        private void ThicknessTextBox_Leave(object sender, EventArgs e)
+        {
+            ValidateParameter(CaseThicknessTextBox);
+        }
+
+        private void WidthTextBox_Leave(object sender, EventArgs e)
+        {
+            ValidateParameter(FlaskWidthTextBox);
+        }
+
+        private void NeckDiameterTextBox_Leave(object sender, EventArgs e)
+        {
+            ValidateParameter(NeckDiameterTextBox);
+        }
+
+        private void HeightTextBox_Leave(object sender, EventArgs e)
+        {
+            ValidateParameter(FlaskHeightTextBox);
+        }
+
+        private void NeckHeightTextBox_Leave(object sender, EventArgs e)
+        {
+            ValidateParameter(NeckHeightTextBox);
         }
     }
 }

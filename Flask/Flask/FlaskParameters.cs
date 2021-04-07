@@ -9,84 +9,103 @@ namespace FlaskUI
 {
     public class FlaskParameters
     {
-        /// <summary>
-        /// 
-        /// </summary>
-        public double FlaskLength { get; set; }
+        private double _flaskLength = 70;
+        private double _flaskWidth = 20;
+        private double _flaskHeight = 100;
+        private double _caseThickness = 1;
+        private double _neckDiameter = 10;
+        private double _neckHeight = 10;
 
         /// <summary>
         /// 
         /// </summary>
-        public double FlaskWidth { get; set; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public double FlaskHeight { get; set; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public double CaseThickness { get; set; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public double NeckDiameter { get; set; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public double NeckHeight { get; set; }
-
-        public FlaskParameters(double flaskLength, double flaskWidth, double flaskHeight, double caseThickness, double neckDiameter, double neckHeight)
+        public double FlaskLength 
         {
-            FlaskLength = flaskLength;
-            FlaskWidth = flaskWidth;
-            FlaskHeight = flaskHeight;
-            CaseThickness = caseThickness;
-            NeckDiameter = neckDiameter;
-            NeckHeight = neckHeight;
-            ValidateParameters();
+            get => _flaskLength;
+            set
+            {
+                ValidateParameters("Длина фляжки", value, 70, 120);
+                _flaskLength = value;
+            }
+        } 
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public double FlaskWidth 
+        {
+            get => _flaskWidth;
+            set
+            {
+                ValidateParameters("Ширина фляжки", value, 20, 40);
+                _flaskWidth = value;
+            }
+        } 
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public double FlaskHeight
+        {
+            get => _flaskHeight;
+            set
+            {
+                ValidateParameters("Высота фляжки", value, 100, 150);
+                _flaskHeight = value;
+            }
         }
 
-        private void ValidateParameters()
+        /// <summary>
+        /// 
+        /// </summary>
+        public double CaseThickness
         {
-            var errorMessage = new List<string>();
-            if (FlaskLength < 70 || FlaskLength > 120)
+            get => _caseThickness;
+            set
             {
-                errorMessage.Add("Длина фляжки должна быть в диапазоне от 70 до 120 мм");
+                ValidateParameters("Толщина стенки фляжки", value, 1, 3);
+                _caseThickness = value;
             }
+        }
 
-            if (FlaskWidth < 20 || FlaskWidth > 40)
+        /// <summary>
+        /// 
+        /// </summary>
+        public double NeckDiameter
+        {
+            get => _neckDiameter;
+            set
             {
-                errorMessage.Add("Ширина фляжки должна быть в диапазоне от 20 до 40 мм");
+                ValidateParameters("Диаметр горлышка", value, 10, 20);
+                _neckDiameter = value;
             }
+        }
 
-            if (FlaskHeight < 100 || FlaskHeight > 150)
+        /// <summary>
+        /// 
+        /// </summary>
+        public double NeckHeight
+        {
+            get => _neckHeight;
+            set
             {
-                errorMessage.Add("Высота фляжки должна быть в диапазоне от 100 до 150 мм");
+                ValidateParameters("Высота горлышка", value, 10, 20);
+                _neckHeight = value;
             }
+        }
 
-            if (CaseThickness < 1 || CaseThickness > 3)
-            {
-                errorMessage.Add("Толщина стенки фляжки должна быть в диапазоне от 1 до 3 мм");
-            }
-
-            if (NeckDiameter < 10 || NeckDiameter > 20)
-            {
-                errorMessage.Add("Диаметр горлышка фляжки должен быть в диапазоне от 10 до 20 мм");
-            }
-
-            if (NeckHeight < 10 || NeckHeight > 20)
-            {
-                errorMessage.Add("Высота горлышка фляжки должна быть в диапазоне от 10 до 20 мм");
-            }
-
-            if (errorMessage.Count > 0)
-            {
-                throw new ArgumentException(string.Join("\n", errorMessage));
-            }
+       /// <summary>
+       /// 
+       /// </summary>
+       /// <param name="name"></param>
+       /// <param name="value"></param>
+       /// <param name="min"></param>
+       /// <param name="max"></param>
+        public void ValidateParameters(string name, double value, double min, double max)
+        {
+            if (!(value < min) && !(value > max)) return;
+            var errorMessage = $"{name} должна быть в диапазоне от {min} до {max} мм.";
+            throw new ArgumentException(string.Join("\n", errorMessage));
         }
     }
 }
