@@ -286,7 +286,7 @@ namespace FlaskUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.AutoValidate = System.Windows.Forms.AutoValidate.EnablePreventFocusChange;
+            this.AutoValidate = System.Windows.Forms.AutoValidate.Disable;
             this.ClientSize = new System.Drawing.Size(412, 219);
             this.Controls.Add(this.BuildModelButton);
             this.Controls.Add(this.ParametersGroupBox);

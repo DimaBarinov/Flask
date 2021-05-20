@@ -1,23 +1,41 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace FlaskUI
+namespace Flask
 {
     public class FlaskParameters
     {
-        private double _flaskLength = 70;
-        private double _flaskWidth = 20;
-        private double _flaskHeight = 100;
-        private double _caseThickness = 1;
-        private double _neckDiameter = 10;
-        private double _neckHeight = 10;
+        /// <summary>
+        /// Длина фляжки.
+        /// </summary>
+        private double _flaskLength;
 
         /// <summary>
-        /// 
+        /// Ширина фляжки.
+        /// </summary>
+        private double _flaskWidth;
+
+        /// <summary>
+        /// Высота фляжки.
+        /// </summary>
+        private double _flaskHeight;
+
+        /// <summary>
+        /// Толщина стенки фляжки.
+        /// </summary>
+        private double _caseThickness;
+
+        /// <summary>
+        /// Диаметр горлышка.
+        /// </summary>
+        private double _neckDiameter;
+
+        /// <summary>
+        /// Высота горлышка.
+        /// </summary>
+        private double _neckHeight;
+
+        /// <summary>
+        /// Свойство длины фляжки.
         /// </summary>
         public double FlaskLength 
         {
@@ -30,7 +48,7 @@ namespace FlaskUI
         } 
 
         /// <summary>
-        /// 
+        /// Свойство ширины фляжки.
         /// </summary>
         public double FlaskWidth 
         {
@@ -43,7 +61,7 @@ namespace FlaskUI
         } 
 
         /// <summary>
-        /// 
+        /// Свойство высоты фляжки.
         /// </summary>
         public double FlaskHeight
         {
@@ -56,7 +74,7 @@ namespace FlaskUI
         }
 
         /// <summary>
-        /// 
+        /// Свойство толщины стенки фляжки.
         /// </summary>
         public double CaseThickness
         {
@@ -69,20 +87,26 @@ namespace FlaskUI
         }
 
         /// <summary>
-        /// 
+        /// Свойство диаметра горлышка.
         /// </summary>
         public double NeckDiameter
         {
             get => _neckDiameter;
             set
             {
-                ValidateParameters("Диаметр горлышка", value, 10, 20);
+                var parameter = (0.666 * FlaskWidth) - CaseThickness;
+                if (parameter > 20) ValidateParameters("Диаметр горлышка", value, 10, 20);
+                
+                else
+                {
+                    ValidateParameters("Диаметр горлышка", value, 10, parameter);
+                }
                 _neckDiameter = value;
             }
         }
 
         /// <summary>
-        /// 
+        /// Свойство высоты горлышка.
         /// </summary>
         public double NeckHeight
         {
@@ -95,15 +119,15 @@ namespace FlaskUI
         }
 
        /// <summary>
-       /// 
+       /// Валидация параметров.
        /// </summary>
-       /// <param name="name"></param>
-       /// <param name="value"></param>
-       /// <param name="min"></param>
-       /// <param name="max"></param>
+       /// <param name="name">Наименование параметра.</param>
+       /// <param name="value">Значение параметра.</param>
+       /// <param name="min">Минимальное допустимое значение.</param>
+       /// <param name="max">Максимальное допустимое значение.</param>
         public void ValidateParameters(string name, double value, double min, double max)
         {
-            if (!(value < min) && !(value > max)) return;
+            if (min <= value && value <= max) return;
             var errorMessage = $"{name} должна быть в диапазоне от {min} до {max} мм.";
             throw new ArgumentException(string.Join("\n", errorMessage));
         }

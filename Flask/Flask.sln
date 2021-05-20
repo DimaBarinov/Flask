@@ -7,6 +7,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FlaskUI", "FlaskUI\FlaskUI.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Flask", "Flask\Flask.csproj", "{A2411F55-3DDB-4090-929A-A688D7C9B2AB}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Testing", "Testing", "{A081663F-49F1-4DD1-AA42-637DED7740DE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Flask.UnitTests", "Testing\Flask.UnitTests\Flask.UnitTests.csproj", "{98833016-A810-43AA-B6B6-DC21AFDF8883}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,9 +25,16 @@ Global
 		{A2411F55-3DDB-4090-929A-A688D7C9B2AB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A2411F55-3DDB-4090-929A-A688D7C9B2AB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A2411F55-3DDB-4090-929A-A688D7C9B2AB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{98833016-A810-43AA-B6B6-DC21AFDF8883}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{98833016-A810-43AA-B6B6-DC21AFDF8883}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{98833016-A810-43AA-B6B6-DC21AFDF8883}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{98833016-A810-43AA-B6B6-DC21AFDF8883}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{98833016-A810-43AA-B6B6-DC21AFDF8883} = {A081663F-49F1-4DD1-AA42-637DED7740DE}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E87AB9D2-3AC7-4210-8AC2-34A0646DC1F6}

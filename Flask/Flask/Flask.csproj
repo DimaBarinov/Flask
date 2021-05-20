@@ -48,8 +48,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BuildingModel.cs" />
-    <Compile Include="ConnectingKompas.cs" />
+    <Compile Include="ModelBuilder.cs" />
+    <Compile Include="KompasConnector.cs" />
     <Compile Include="FlaskParameters.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
