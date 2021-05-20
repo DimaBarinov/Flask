@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using Flask;
 
@@ -39,10 +32,8 @@ namespace FlaskUI
         }
         
         /// <summary>
-        /// 
+        /// Событие обработки нажатия на кнопку "Построить модель"
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
         private void BuildModelButton_Click(object sender, EventArgs e)
         {
             try
@@ -106,31 +97,49 @@ namespace FlaskUI
             }
         }
 
+        /// <summary>
+        /// Событие обработки выходо из поля
+        /// </summary>
         private void LengthTextBox_Leave(object sender, EventArgs e)
         {
             ValidateParameter(FlaskLengthTextBox);
         }
 
+        /// <summary>
+        /// Событие обработки выходо из поля
+        /// </summary>
         private void ThicknessTextBox_Leave(object sender, EventArgs e)
         {
             ValidateParameter(CaseThicknessTextBox);
         }
 
+        /// <summary>
+        /// Событие обработки выходо из поля
+        /// </summary>
         private void WidthTextBox_Leave(object sender, EventArgs e)
         {
             ValidateParameter(FlaskWidthTextBox);
         }
 
+        /// <summary>
+        /// Событие обработки выходо из поля
+        /// </summary>
         private void NeckDiameterTextBox_Leave(object sender, EventArgs e)
         {
             ValidateParameter(NeckDiameterTextBox);
         }
 
+        /// <summary>
+        /// Событие обработки выходо из поля
+        /// </summary>
         private void HeightTextBox_Leave(object sender, EventArgs e)
         {
             ValidateParameter(FlaskHeightTextBox);
         }
 
+        /// <summary>
+        /// Событие обработки выходо из поля
+        /// </summary>
         private void NeckHeightTextBox_Leave(object sender, EventArgs e)
         {
             ValidateParameter(NeckHeightTextBox);
