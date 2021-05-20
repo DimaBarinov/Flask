@@ -2,6 +2,7 @@
 
 namespace Flask
 {
+    //TODO: XML комментарии?
     public class FlaskParameters
     {
         /// <summary>
@@ -95,6 +96,7 @@ namespace Flask
             set
             {
                 var parameter = (0.666 * FlaskWidth) - CaseThickness;
+                //TODO:
                 if (parameter > 20) ValidateParameters("Диаметр горлышка", value, 10, 20);
                 
                 else
@@ -128,6 +130,7 @@ namespace Flask
         public void ValidateParameters(string name, double value, double min, double max)
         {
             if (min <= value && value <= max) return;
+
             var errorMessage = $"{name} должна быть в диапазоне от {min} до {max} мм.";
             throw new ArgumentException(string.Join("\n", errorMessage));
         }

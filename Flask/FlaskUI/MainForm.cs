@@ -4,6 +4,7 @@ using Flask;
 
 namespace FlaskUI
 {       
+    //TODO: XML комментарии?
     public partial class MainForm : Form
     {
         /// <summary>
@@ -22,6 +23,7 @@ namespace FlaskUI
         public MainForm()
         {
             InitializeComponent();
+            //TODO:
             FlaskLengthTextBox.Text = "70";
             FlaskHeightTextBox.Text = "100";
             FlaskWidthTextBox.Text = "20";
@@ -51,11 +53,13 @@ namespace FlaskUI
             }
             catch (FormatException)
             {
+                 //TODO: RSDN
                 MessageBox.Show("Данные введены некорректно. Возможно, заполнены не все обязательные поля или введены лишние запятые.",
                     @"Предупреждение", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
             catch (ArgumentException ex)
             {
+                 //TODO: RSDN
                 MessageBox.Show(ex.Message, @"Предупреждение", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
@@ -65,7 +69,10 @@ namespace FlaskUI
         /// </summary>
         private void LengthTextBox_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if ((e.KeyChar < '0' || e.KeyChar > '9') && (e.KeyChar != 44) && (e.KeyChar != 8))
+            //TODO:
+            if ((e.KeyChar < '0' || e.KeyChar > '9') 
+                && (e.KeyChar != 44) 
+                && (e.KeyChar != 8))
                 e.Handled = true;
         }
 
@@ -77,7 +84,9 @@ namespace FlaskUI
         {
             try
             {
-                if (control.Name.Contains("FlaskLengthTextBox")) _parameters.FlaskLength = double.Parse(control.Text);
+                 //TODO: RSDN
+                if (control.Equals(FlaskLengthTextBox)) _parameters.FlaskLength = double.Parse(control.Text);
+                
                 if (control.Name.Contains("FlaskWidthTextBox")) _parameters.FlaskWidth = double.Parse(control.Text);
                 if (control.Name.Contains("FlaskHeightTextBox")) _parameters.FlaskHeight = double.Parse(control.Text);
                 if (control.Name.Contains("CaseThicknessTextBox")) _parameters.CaseThickness = double.Parse(control.Text);
@@ -86,17 +95,20 @@ namespace FlaskUI
             }
             catch (FormatException)
             {
+                 //TODO: RSDN
                 MessageBox.Show("Данные введены некорректно. Возможно, заполнены не все обязательные поля или введены лишние запятые.",
                     @"Предупреждение", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 control.Focus();
             }
             catch (ArgumentException ex)
             {
+                 //TODO: RSDN
                 MessageBox.Show(ex.Message, @"Предупреждение", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 control.Focus();
             }
         }
 
+        //TODO: Duplication
         /// <summary>
         /// Событие обработки выходо из поля
         /// </summary>
