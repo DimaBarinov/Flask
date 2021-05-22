@@ -1,10 +1,14 @@
 ﻿using System;
 using System.Windows.Forms;
 using Flask;
+using FlaskParameters;
 
 namespace FlaskUI
 {       
     //TODO: XML комментарии?
+    /// <summary>
+    /// Класс главной формы программы.
+    /// </summary>
     public partial class MainForm : Form
     {
         /// <summary>
@@ -15,7 +19,7 @@ namespace FlaskUI
         /// <summary>
         /// Экземпляр класса параметров.
         /// </summary>
-        private FlaskParameters _parameters = new FlaskParameters();
+        private Parameters _parameters = new Parameters();
 
         /// <summary>
         /// Инициализация данных.
@@ -24,12 +28,12 @@ namespace FlaskUI
         {
             InitializeComponent();
             //TODO:
-            FlaskLengthTextBox.Text = "70";
-            FlaskHeightTextBox.Text = "100";
-            FlaskWidthTextBox.Text = "20";
-            CaseThicknessTextBox.Text = "1";
-            NeckDiameterTextBox.Text = "10";
-            NeckHeightTextBox.Text = "10";
+            FlaskLengthTextBox.Text = Convert.ToString(_parameters.FlaskLength);
+            FlaskHeightTextBox.Text = Convert.ToString(_parameters.FlaskHeight);
+            FlaskWidthTextBox.Text = Convert.ToString(_parameters.FlaskWidth);
+            CaseThicknessTextBox.Text = Convert.ToString(_parameters.CaseThickness);
+            NeckDiameterTextBox.Text = Convert.ToString(_parameters.NeckDiameter);
+            NeckHeightTextBox.Text = Convert.ToString(_parameters.NeckHeight);
 
         }
         
@@ -54,13 +58,15 @@ namespace FlaskUI
             catch (FormatException)
             {
                  //TODO: RSDN
-                MessageBox.Show("Данные введены некорректно. Возможно, заполнены не все обязательные поля или введены лишние запятые.",
+                MessageBox.Show("Данные введены некорректно. Возможно, заполнены не все" +
+                    " обязательные поля или введены лишние запятые.",
                     @"Предупреждение", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
             catch (ArgumentException ex)
             {
                  //TODO: RSDN
-                MessageBox.Show(ex.Message, @"Предупреждение", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show(ex.Message, @"Предупреждение", MessageBoxButtons.OK, 
+                    MessageBoxIcon.Warning);
             }
         }
 
@@ -70,9 +76,10 @@ namespace FlaskUI
         private void LengthTextBox_KeyPress(object sender, KeyPressEventArgs e)
         {
             //TODO:
+            var keysBack = Convert.ToChar(Keys.Back); 
             if ((e.KeyChar < '0' || e.KeyChar > '9') 
-                && (e.KeyChar != 44) 
-                && (e.KeyChar != 8))
+                && (e.KeyChar != ',')
+                && (e.KeyChar != keysBack))
                 e.Handled = true;
         }
 
@@ -84,77 +91,56 @@ namespace FlaskUI
         {
             try
             {
-                 //TODO: RSDN
-                if (control.Equals(FlaskLengthTextBox)) _parameters.FlaskLength = double.Parse(control.Text);
-                
-                if (control.Name.Contains("FlaskWidthTextBox")) _parameters.FlaskWidth = double.Parse(control.Text);
-                if (control.Name.Contains("FlaskHeightTextBox")) _parameters.FlaskHeight = double.Parse(control.Text);
-                if (control.Name.Contains("CaseThicknessTextBox")) _parameters.CaseThickness = double.Parse(control.Text);
-                if (control.Name.Contains("NeckDiameterTextBox")) _parameters.NeckDiameter = double.Parse(control.Text);
-                if (control.Name.Contains("NeckHeightTextBox")) _parameters.NeckHeight = double.Parse(control.Text);
+                //TODO: RSDN
+                if (control.Equals(FlaskLengthTextBox))
+                {
+                    _parameters.FlaskLength = double.Parse(control.Text);
+                }
+                if (control.Equals(FlaskWidthTextBox))
+                {
+                    _parameters.FlaskWidth = double.Parse(control.Text);
+                }
+                if (control.Equals(FlaskHeightTextBox))
+                {
+                    _parameters.FlaskHeight = double.Parse(control.Text);
+                }
+                if (control.Equals(CaseThicknessTextBox))
+                {
+                    _parameters.CaseThickness = double.Parse(control.Text);
+                }
+                if (control.Equals(NeckDiameterTextBox))
+                {
+                    _parameters.NeckDiameter = double.Parse(control.Text);
+                }
+                if (control.Equals(NeckHeightTextBox))
+                {
+                    _parameters.NeckHeight = double.Parse(control.Text);
+                }
             }
             catch (FormatException)
             {
                  //TODO: RSDN
-                MessageBox.Show("Данные введены некорректно. Возможно, заполнены не все обязательные поля или введены лишние запятые.",
+                MessageBox.Show("Данные введены некорректно. " +
+                    "Возможно, заполнены не все обязательные поля или введены лишние запятые.",
                     @"Предупреждение", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 control.Focus();
             }
             catch (ArgumentException ex)
             {
                  //TODO: RSDN
-                MessageBox.Show(ex.Message, @"Предупреждение", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show(ex.Message, @"Предупреждение", MessageBoxButtons.OK, 
+                    MessageBoxIcon.Warning);
                 control.Focus();
             }
         }
 
         //TODO: Duplication
         /// <summary>
-        /// Событие обработки выходо из поля
+        /// Событие обработки выхода из поля.
         /// </summary>
-        private void LengthTextBox_Leave(object sender, EventArgs e)
+        private void TextBox_Leave(object sender, EventArgs e)
         {
-            ValidateParameter(FlaskLengthTextBox);
-        }
-
-        /// <summary>
-        /// Событие обработки выходо из поля
-        /// </summary>
-        private void ThicknessTextBox_Leave(object sender, EventArgs e)
-        {
-            ValidateParameter(CaseThicknessTextBox);
-        }
-
-        /// <summary>
-        /// Событие обработки выходо из поля
-        /// </summary>
-        private void WidthTextBox_Leave(object sender, EventArgs e)
-        {
-            ValidateParameter(FlaskWidthTextBox);
-        }
-
-        /// <summary>
-        /// Событие обработки выходо из поля
-        /// </summary>
-        private void NeckDiameterTextBox_Leave(object sender, EventArgs e)
-        {
-            ValidateParameter(NeckDiameterTextBox);
-        }
-
-        /// <summary>
-        /// Событие обработки выходо из поля
-        /// </summary>
-        private void HeightTextBox_Leave(object sender, EventArgs e)
-        {
-            ValidateParameter(FlaskHeightTextBox);
-        }
-
-        /// <summary>
-        /// Событие обработки выходо из поля
-        /// </summary>
-        private void NeckHeightTextBox_Leave(object sender, EventArgs e)
-        {
-            ValidateParameter(NeckHeightTextBox);
+            ValidateParameter((TextBox)sender);
         }
     }
 }

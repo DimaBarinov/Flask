@@ -213,7 +213,7 @@ namespace FlaskUI
             this.CaseThicknessTextBox.Size = new System.Drawing.Size(80, 20);
             this.CaseThicknessTextBox.TabIndex = 1;
             this.CaseThicknessTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.LengthTextBox_KeyPress);
-            this.CaseThicknessTextBox.Leave += new System.EventHandler(this.ThicknessTextBox_Leave);
+            this.CaseThicknessTextBox.Leave += new System.EventHandler(this.TextBox_Leave);
             // 
             // NeckDiameterTextBox
             // 
@@ -223,7 +223,7 @@ namespace FlaskUI
             this.NeckDiameterTextBox.Size = new System.Drawing.Size(80, 20);
             this.NeckDiameterTextBox.TabIndex = 3;
             this.NeckDiameterTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.LengthTextBox_KeyPress);
-            this.NeckDiameterTextBox.Leave += new System.EventHandler(this.NeckDiameterTextBox_Leave);
+            this.NeckDiameterTextBox.Leave += new System.EventHandler(this.TextBox_Leave);
             // 
             // NeckHeightTextBox
             // 
@@ -233,7 +233,7 @@ namespace FlaskUI
             this.NeckHeightTextBox.Size = new System.Drawing.Size(80, 20);
             this.NeckHeightTextBox.TabIndex = 5;
             this.NeckHeightTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.LengthTextBox_KeyPress);
-            this.NeckHeightTextBox.Leave += new System.EventHandler(this.NeckHeightTextBox_Leave);
+            this.NeckHeightTextBox.Leave += new System.EventHandler(this.TextBox_Leave);
             // 
             // FlaskHeightTextBox
             // 
@@ -243,7 +243,7 @@ namespace FlaskUI
             this.FlaskHeightTextBox.Size = new System.Drawing.Size(80, 20);
             this.FlaskHeightTextBox.TabIndex = 4;
             this.FlaskHeightTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.LengthTextBox_KeyPress);
-            this.FlaskHeightTextBox.Leave += new System.EventHandler(this.HeightTextBox_Leave);
+            this.FlaskHeightTextBox.Leave += new System.EventHandler(this.TextBox_Leave);
             // 
             // FlaskWidthTextBox
             // 
@@ -253,7 +253,7 @@ namespace FlaskUI
             this.FlaskWidthTextBox.Size = new System.Drawing.Size(80, 20);
             this.FlaskWidthTextBox.TabIndex = 2;
             this.FlaskWidthTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.LengthTextBox_KeyPress);
-            this.FlaskWidthTextBox.Leave += new System.EventHandler(this.WidthTextBox_Leave);
+            this.FlaskWidthTextBox.Leave += new System.EventHandler(this.TextBox_Leave);
             // 
             // FlaskLengthTextBox
             // 
@@ -265,7 +265,7 @@ namespace FlaskUI
             this.FlaskLengthTextBox.Size = new System.Drawing.Size(80, 20);
             this.FlaskLengthTextBox.TabIndex = 0;
             this.FlaskLengthTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.LengthTextBox_KeyPress);
-            this.FlaskLengthTextBox.Leave += new System.EventHandler(this.LengthTextBox_Leave);
+            this.FlaskLengthTextBox.Leave += new System.EventHandler(this.TextBox_Leave);
             // 
             // BuildModelButton
             // 

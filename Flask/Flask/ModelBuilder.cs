@@ -1,10 +1,13 @@
-﻿using Flask;
-using Kompas6API5;
+﻿using Kompas6API5;
 using Kompas6Constants;
 using Kompas6Constants3D;
+using FlaskParameters;
 
 namespace Flask
 {
+    /// <summary>
+    /// Класс построителя модели фляжки.
+    /// </summary>
     public class ModelBuilder
     {
         /// <summary>
@@ -42,7 +45,7 @@ namespace Flask
         /// </summary>
         /// <param name="parameters">Параметры фляжки.</param>
         /// <param name="kompas">Интерфейс API компаса.</param>
-        public void BuildFlask(FlaskParameters parameters, KompasObject kompas)
+        public void BuildFlask(Parameters parameters, KompasObject kompas)
         {
             _kompas = kompas;
             _ksDoc3D = (ksDocument3D)_kompas.Document3D();
@@ -54,8 +57,9 @@ namespace Flask
                 parameters.FlaskHeight, parameters.CaseThickness,
                 parameters.NeckDiameter, parameters.NeckHeight);
             CreateThread(parameters.FlaskWidth, parameters.NeckDiameter, 
-                parameters.FlaskHeight + parameters.NeckHeight, parameters.NeckDiameter, 
-                parameters.NeckHeight - 1, parameters.FlaskWidth);
+                parameters.FlaskHeight + parameters.NeckHeight, 
+                parameters.NeckDiameter, parameters.NeckHeight - 1, 
+                parameters.FlaskWidth);
         }
 
         /// <summary>
@@ -75,7 +79,8 @@ namespace Flask
                 (short)Obj3dType.o3d_planeXOY);
             var corner = flaskWidth / 2;
             var offsetPlaneXoy = CreateOffsetPlane(flaskHeight, 1);
-            CreateRectangle(flaskLength, flaskWidth, 0, 0, currentPlane, flaskWidth / 2);
+            CreateRectangle(flaskLength, flaskWidth, 0, 0, currentPlane, 
+                flaskWidth / 2);
             Extrude(flaskHeight, _entitySketch);
             CreareCircle(0, flaskWidth / 2, neckDiameter / 2, offsetPlaneXoy);
             Extrude(neckHeight, _entitySketch);
@@ -268,7 +273,8 @@ namespace Flask
         /// <param name="diameter">Диаметр спирали.</param>
         /// <param name="offset">Расстояние до плоскости.</param>
         /// <param name="width">Координата смещения спирали.</param>
-        private void CreateSpiral(double height, double diameter, double offset, double width)
+        private void CreateSpiral(double height, double diameter, double offset, 
+            double width)
         {
             var offsetPlaneXoy = CreateOffsetPlane(offset, 1);
             var cylindricSpiral = (ksEntity)_ksPart.

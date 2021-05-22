@@ -9,7 +9,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Flask", "Flask\Flask.csproj
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Testing", "Testing", "{A081663F-49F1-4DD1-AA42-637DED7740DE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Flask.UnitTests", "Testing\Flask.UnitTests\Flask.UnitTests.csproj", "{98833016-A810-43AA-B6B6-DC21AFDF8883}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Flask.UnitTests", "Testing\Flask.UnitTests\Flask.UnitTests.csproj", "{98833016-A810-43AA-B6B6-DC21AFDF8883}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FlaskParameters", "FlaskParameters\FlaskParameters.csproj", "{8076B63C-7729-4DE5-8AE3-63378C156695}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -29,6 +31,10 @@ Global
 		{98833016-A810-43AA-B6B6-DC21AFDF8883}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{98833016-A810-43AA-B6B6-DC21AFDF8883}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{98833016-A810-43AA-B6B6-DC21AFDF8883}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8076B63C-7729-4DE5-8AE3-63378C156695}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8076B63C-7729-4DE5-8AE3-63378C156695}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8076B63C-7729-4DE5-8AE3-63378C156695}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8076B63C-7729-4DE5-8AE3-63378C156695}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

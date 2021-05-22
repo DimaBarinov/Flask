@@ -1,44 +1,47 @@
 ﻿using System;
 
-namespace Flask
+namespace FlaskParameters
 {
     //TODO: XML комментарии?
-    public class FlaskParameters
+    /// <summary>
+    /// Класс параметров фляжки.
+    /// </summary>
+    public class Parameters
     {
         /// <summary>
         /// Длина фляжки.
         /// </summary>
-        private double _flaskLength;
+        private double _flaskLength = 70;
 
         /// <summary>
         /// Ширина фляжки.
         /// </summary>
-        private double _flaskWidth;
+        private double _flaskWidth = 40;
 
         /// <summary>
         /// Высота фляжки.
         /// </summary>
-        private double _flaskHeight;
+        private double _flaskHeight = 100;
 
         /// <summary>
         /// Толщина стенки фляжки.
         /// </summary>
-        private double _caseThickness;
+        private double _caseThickness = 1;
 
         /// <summary>
         /// Диаметр горлышка.
         /// </summary>
-        private double _neckDiameter;
+        private double _neckDiameter = 10;
 
         /// <summary>
         /// Высота горлышка.
         /// </summary>
-        private double _neckHeight;
+        private double _neckHeight = 10;
 
         /// <summary>
         /// Свойство длины фляжки.
         /// </summary>
-        public double FlaskLength 
+        public double FlaskLength
         {
             get => _flaskLength;
             set
@@ -46,12 +49,12 @@ namespace Flask
                 ValidateParameters("Длина фляжки", value, 70, 120);
                 _flaskLength = value;
             }
-        } 
+        }
 
         /// <summary>
         /// Свойство ширины фляжки.
         /// </summary>
-        public double FlaskWidth 
+        public double FlaskWidth
         {
             get => _flaskWidth;
             set
@@ -59,7 +62,7 @@ namespace Flask
                 ValidateParameters("Ширина фляжки", value, 20, 40);
                 _flaskWidth = value;
             }
-        } 
+        }
 
         /// <summary>
         /// Свойство высоты фляжки.
@@ -97,8 +100,10 @@ namespace Flask
             {
                 var parameter = (0.666 * FlaskWidth) - CaseThickness;
                 //TODO:
-                if (parameter > 20) ValidateParameters("Диаметр горлышка", value, 10, 20);
-                
+                if (parameter > 20)
+                {
+                    ValidateParameters("Диаметр горлышка", value, 10, 20);
+                }
                 else
                 {
                     ValidateParameters("Диаметр горлышка", value, 10, parameter);
@@ -120,13 +125,13 @@ namespace Flask
             }
         }
 
-       /// <summary>
-       /// Валидация параметров.
-       /// </summary>
-       /// <param name="name">Наименование параметра.</param>
-       /// <param name="value">Значение параметра.</param>
-       /// <param name="min">Минимальное допустимое значение.</param>
-       /// <param name="max">Максимальное допустимое значение.</param>
+        /// <summary>
+        /// Валидация параметров.
+        /// </summary>
+        /// <param name="name">Наименование параметра.</param>
+        /// <param name="value">Значение параметра.</param>
+        /// <param name="min">Минимальное допустимое значение.</param>
+        /// <param name="max">Максимальное допустимое значение.</param>
         public void ValidateParameters(string name, double value, double min, double max)
         {
             if (min <= value && value <= max) return;

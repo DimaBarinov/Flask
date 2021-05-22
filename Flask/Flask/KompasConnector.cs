@@ -5,6 +5,9 @@ using Kompas6API5;
 namespace Flask
 {
     //TODO: XML комментарии?
+    /// <summary>
+    /// Класс подключения к Компасу.
+    /// </summary>
     public class KompasConnector
     {
         /// <summary>
@@ -30,6 +33,7 @@ namespace Flask
             kompas.ActivateControllerAPI();
             Kompas = kompas;
         }
+
         /// <summary>
         /// Подключение к открытому КОМПАС-3D.
         /// </summary>

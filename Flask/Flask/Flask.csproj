@@ -50,7 +50,6 @@
   <ItemGroup>
     <Compile Include="ModelBuilder.cs" />
     <Compile Include="KompasConnector.cs" />
-    <Compile Include="FlaskParameters.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -103,6 +102,12 @@
       <Isolated>False</Isolated>
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </COMReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\FlaskParameters\FlaskParameters.csproj">
+      <Project>{8076b63c-7729-4de5-8ae3-63378c156695}</Project>
+      <Name>FlaskParameters</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

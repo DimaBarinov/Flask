@@ -80,6 +80,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\FlaskParameters\FlaskParameters.csproj">
+      <Project>{8076b63c-7729-4de5-8ae3-63378c156695}</Project>
+      <Name>FlaskParameters</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Flask\Flask.csproj">
       <Project>{a2411f55-3ddb-4090-929a-a688d7c9b2ab}</Project>
       <Name>Flask</Name>
