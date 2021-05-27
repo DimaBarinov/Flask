@@ -4,7 +4,6 @@ using Kompas6API5;
 
 namespace Flask
 {
-    //TODO: XML комментарии?
     /// <summary>
     /// Класс подключения к Компасу.
     /// </summary>

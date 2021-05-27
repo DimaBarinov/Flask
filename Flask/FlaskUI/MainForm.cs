@@ -5,7 +5,6 @@ using FlaskParameters;
 
 namespace FlaskUI
 {       
-    //TODO: XML комментарии?
     /// <summary>
     /// Класс главной формы программы.
     /// </summary>
@@ -27,7 +26,6 @@ namespace FlaskUI
         public MainForm()
         {
             InitializeComponent();
-            //TODO:
             FlaskLengthTextBox.Text = Convert.ToString(_parameters.FlaskLength);
             FlaskHeightTextBox.Text = Convert.ToString(_parameters.FlaskHeight);
             FlaskWidthTextBox.Text = Convert.ToString(_parameters.FlaskWidth);
@@ -57,14 +55,12 @@ namespace FlaskUI
             }
             catch (FormatException)
             {
-                 //TODO: RSDN
                 MessageBox.Show("Данные введены некорректно. Возможно, заполнены не все" +
                     " обязательные поля или введены лишние запятые.",
                     @"Предупреждение", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
             catch (ArgumentException ex)
             {
-                 //TODO: RSDN
                 MessageBox.Show(ex.Message, @"Предупреждение", MessageBoxButtons.OK, 
                     MessageBoxIcon.Warning);
             }
@@ -75,12 +71,13 @@ namespace FlaskUI
         /// </summary>
         private void LengthTextBox_KeyPress(object sender, KeyPressEventArgs e)
         {
-            //TODO:
-            var keysBack = Convert.ToChar(Keys.Back); 
-            if ((e.KeyChar < '0' || e.KeyChar > '9') 
+            var keysBack = Convert.ToChar(Keys.Back);
+            if ((e.KeyChar < '0' || e.KeyChar > '9')
                 && (e.KeyChar != ',')
                 && (e.KeyChar != keysBack))
+            {
                 e.Handled = true;
+            }
         }
 
         /// <summary>
@@ -91,7 +88,6 @@ namespace FlaskUI
         {
             try
             {
-                //TODO: RSDN
                 if (control.Equals(FlaskLengthTextBox))
                 {
                     _parameters.FlaskLength = double.Parse(control.Text);
@@ -119,7 +115,6 @@ namespace FlaskUI
             }
             catch (FormatException)
             {
-                 //TODO: RSDN
                 MessageBox.Show("Данные введены некорректно. " +
                     "Возможно, заполнены не все обязательные поля или введены лишние запятые.",
                     @"Предупреждение", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -127,14 +122,12 @@ namespace FlaskUI
             }
             catch (ArgumentException ex)
             {
-                 //TODO: RSDN
                 MessageBox.Show(ex.Message, @"Предупреждение", MessageBoxButtons.OK, 
                     MessageBoxIcon.Warning);
                 control.Focus();
             }
         }
 
-        //TODO: Duplication
         /// <summary>
         /// Событие обработки выхода из поля.
         /// </summary>
